@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+.border-radius{
+	border-radius: 15px;
+}
+.border-area{
+	border: 1px solid black;
+}

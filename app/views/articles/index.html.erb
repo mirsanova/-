@@ -1,26 +1,46 @@
 <div class="container">
   <div class="text-center">
-    <h1>Listing articles</h1>
+    <h1 class="text-info">Listing articles</h1>
   </div>
   <table class="table table-bordered">
     <tr>
       <th>Title</th>
       <th>Text</th>
-      <th colspan=3></th>
+      <th class='text-center'>Show</th>
+      <th class='text-center'>Edit</th>
+      <th class='text-center'>Destroy</th>
     </tr>
 
     <% @articles.each do |article| %>
       <tr>
         <td><%= article.title %></td>
-        <td><%= article.text %></td>
-        <td><%= link_to 'Show', article_path(article) %></td>
-        <td><%= link_to 'Edit', edit_article_path(article) %></td>
-        <td><%= link_to 'Destroy', article_path(article),
+        <td><%= article.text %></td>        
+        <td class="text-center">
+          <%= link_to article_path(article) do %>
+            <span class="fa fa-eye"></span>
+          <% end %>
+        </td>
+        <td class="text-center">
+          <%= link_to edit_article_path(article) do %>
+            <span class="fa fa-pencil-square-o"></span>
+          <% end %>
+        </td>
+        <td class="text-center">
+          <%= link_to article_path(article),
                 method: :delete,
-                data: { confirm: 'Are you sure?' } %></td>
+                data: { confirm: 'Are you sure?' } do %>
+            <span class="fa fa-times"></span>
+          <% end %>
+        </td>        
       </tr>
-    <% end %>
+    <% end %>    
   </table>
-  <%= link_to 'New article', new_article_path, class: 'btn btn-primary', role: 'button' %>
-  <%= link_to 'Main menu', root_path, class: 'btn btn-default', role: 'button' %>
+  <div class="text-center">
+    <nav>
+      <ul class="pager">
+        <li><%= link_to 'Back', root_path, class: 'btn btn-default', role: 'button' %></li>
+        <li><%= link_to 'New article', new_article_path, class: 'btn btn-default', role: 'button' %></li>        
+      </ul>      
+    </nav>
+  </div> 
 </div>
