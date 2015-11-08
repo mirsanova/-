@@ -13,9 +13,25 @@
  *= require_tree .
  *= require_self
  */
+
 .border-radius{
 	border-radius: 15px;
 }
 .border-area{
 	border: 1px solid black;
 }
+textarea{
+  resize: none;
+}
+.background-style{
+  position: relative;
+  border: 2px solid #CACDD0;
+  background: #fbfbfb;
+  border-radius: 15px;
+  margin-top: 20px;
+  padding: 20px;
+}
+label{
+  margin: 5px;
+}
+

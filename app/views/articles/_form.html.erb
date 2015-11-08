@@ -1,25 +1,24 @@
 <%= form_for @article, class: 'form-horizontal' do |f| %>
   <%= render 'common/errors', resource: @article %>
-<div class="row">
-  <div class="col-md-4 col-md-offset-4">
-    <%=f.label :title, class: 'control-label' %>		    
-    <%= f.text_field :title, class: 'form-control', type: 'text' %>		    	        
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <%=f.label :title, class: 'control-label' %>
+      <%= f.text_field :title, class: 'form-control', type: 'text' %>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-md-4 col-md-offset-4">
-    <%= f.label :text, class: 'control-label' %>		    
-    <%= f.text_area :text, class: 'form-control', rows: '10' %>		    	    	
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <%= f.label :text, class: 'control-label' %>
+      <%= f.text_area :text, class: 'form-control', rows: '10' %>
+    </div>
   </div>
-</div>
-<br>
-<div class="text-center">
-	<nav>
-  		<ul class="pager">
-  			<li><%= link_to 'Back', articles_path, class: 'btn btn-default', role: 'button'%></li>
-    		<li><%= f.submit class: 'btn btn-default border-radius', role: 'button' %></li>	    		    
-  		</ul>
-  	</nav>	
-</div>
-<% end %>	
+  <div class="text-center">
+  	<nav>
+    		<ul class="pager">
+    			<li><%= link_to 'Back', articles_path, class: 'btn btn-default', role: 'button'%></li>
+      		<li><%= f.submit class: 'btn btn-default border-radius', role: 'button' %></li>
+    		</ul>
+    	</nav>
+  </div>
+<% end %>
 

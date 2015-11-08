@@ -1,19 +1,25 @@
 <div class="container">
+  <div class="background-style">
   	<div class="text-center">
-		<h3 class="text-info"><%= @article.title %></h2>		
+		  <h3 class="text-info"><%= @article.title %></h3>
   	</div>
-  	<p>  		
+  	<div>
   		<%= @article.text %>
-	</p>	
- 	<div class="text-center">
-		<h4 class="text-info">Comments</h2>
-	</div>
-	<div class="col-md-8 col-md-offset-2">
+	  </div>
+ 	  <div class="text-center">
+		  <h4 class="text-info">Comments</h4>
+	  </div>
+	 <div>
 		<%= render @article.comments %>
- 	</div>
-	<h4 class="text-info text ">Add a comment:</h2>
-	<%= render 'comments/form' %>
- 
-	<%= link_to 'Edit', edit_article_path(@article), class: 'btn btn-primary' %>
-	<%= link_to 'Back', articles_path, class: 'btn btn-default', role: 'button' %>
+ 	 </div>
+	 <h4 class="text-info text-center">Add a comment:</h4>
+	 <%= render 'comments/form' %>
+   <div class="text-center">
+      <nav>
+        <ul class="pager">
+	        <li><%= link_to 'Edit', edit_article_path(@article), class: 'btn btn-default' %></li>
+	        <li><%= link_to 'Back', articles_path, class: 'btn btn-default', role: 'button' %></li>
+        </ul>
+      </nav>
+  </div>
 </div>

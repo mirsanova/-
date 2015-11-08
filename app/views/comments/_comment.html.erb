@@ -1,16 +1,17 @@
-<div class="border-area">	
-	<div>
-	  <strong>Commenter:</strong>
-	  <%= comment.commenter %>
-	</div>
-	 
-	<div>
-	  <strong>Comment:</strong>
-	  <%= comment.body %>
-	</div>
-	<div class="icon-delete">
-	  <%= link_to '', [comment.article, comment],
+<% if comment.body.present? %>
+	<div class="comment-style clearfix">
+		 <%= link_to '', [comment.article, comment],
 	               method: :delete,
-	               data: { confirm: 'Are you sure?' }, class: 'fa fa-times'%>
+	               data: { confirm: 'Are you sure?' }, class: 'fa fa-times icon-delete'%>
+
+		<div>
+		  <strong>Commenter:</strong>
+		  <%= comment.commenter %>
+		</div>
+
+		<div>
+		  <strong>Comment:</strong>
+		  <%= comment.body %>
+		</div>
 	</div>
-</div>
+<% end %>
