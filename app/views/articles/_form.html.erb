@@ -12,13 +12,13 @@
       <%= f.text_area :text, class: 'form-control', rows: '10' %>
     </div>
   </div>
-  <div class="text-center">
+  <div class="form-btn text-center">
   	<nav>
-    		<ul class="pager">
-    			<li><%= link_to 'Back', articles_path, class: 'btn btn-default', role: 'button'%></li>
-      		<li><%= f.submit class: 'btn btn-default border-radius', role: 'button' %></li>
-    		</ul>
-    	</nav>
+    		 <div class="btn-group">
+    			<%= link_to 'Back', articles_path, class: 'btn btn-primary', role: 'button'%>
+      		<%= f.submit class: 'btn btn-success', role: 'button' %>
+    		</div>
+    </nav>
   </div>
 <% end %>
 

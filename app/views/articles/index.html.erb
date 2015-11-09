@@ -48,10 +48,10 @@
     </table>
     <div class="text-center">
       <nav>
-        <ul class="pager">
-          <li><%= link_to 'Back', root_path, class: 'btn btn-default', role: 'button' %></li>
-          <li><%= link_to 'New article', new_article_path, class: 'btn btn-default', role: 'button' %></li>
-        </ul>
+        <div class="btn-group">
+          <%= link_to 'Back', root_path, class: 'btn btn-primary', role: 'button' %>
+          <%= link_to 'New article', new_article_path, class: 'btn btn-success', role: 'button' %>
+        </div>
       </nav>
     </div>
  </div>

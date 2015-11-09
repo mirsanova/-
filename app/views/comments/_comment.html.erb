@@ -4,13 +4,11 @@
 	               method: :delete,
 	               data: { confirm: 'Are you sure?' }, class: 'fa fa-times icon-delete'%>
 
-		<div>
-		  <strong>Commenter:</strong>
-		  <%= comment.commenter %>
+		<div>		  
+		  <p><strong><%= comment.commenter%></strong>
+		  <small><%= l(comment.created_at, format: '%B, %d %Y %H:%M:%S') %></small></p>
 		</div>
-
-		<div>
-		  <strong>Comment:</strong>
+		<div>		  
 		  <%= comment.body %>
 		</div>
 	</div>
