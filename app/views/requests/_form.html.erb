@@ -1,1 +1,28 @@
-
+<%= form_for @request, class: 'form-horizontal' do |f| %>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <%=f.label :city, class: 'control-label' %>
+      <%= f.text_field :city, class: 'form-control', type: 'text' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <%= f.label :region, class: 'control-label' %>
+      <%= f.text_area :region, class: 'form-control', rows: '10', type: 'text' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <%= f.label :weight, class: 'control-label' %>
+      <%= f.text_area :weight, class: 'form-control', rows: '10', type: 'text' %>
+    </div>
+  </div>
+  <div class="form-btn text-center">
+    <nav>
+      <div class="btn-group">
+        <%= f.submit class: 'btn btn-success', role: 'button' %>
+      </div>
+    </nav>
+  </div>
+<% end %>
+  
