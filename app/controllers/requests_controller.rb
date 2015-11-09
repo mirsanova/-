@@ -9,4 +9,7 @@ class RequestsController < ApplicationController
 	@result_term_min = result['rsp']['term']['min']
 	@result_term_max = result['rsp']['term']['max']
   end
+  def new
+    @request = Request.new
+  end
 end
