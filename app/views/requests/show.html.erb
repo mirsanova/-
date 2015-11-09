@@ -1,0 +1,37 @@
+<div class="container">
+
+<!--   <div>
+    <p>Ответ с сервера <%= @result_msg %></p>
+	<p>Stat: <%= @result_stat %></p>
+	<p>Price: <%= @result_price %></p>
+	<p>Term-min: <%= @result_term_min %></p>
+	<p>Term-max: <%= @result_term_max %></p>
+  </div> -->
+
+  <%= form_tag request_path, method: :get do  %>
+    <div>
+      <%= select_tag :from_location, options_from_collection_for_select(@locations, :first, :last, params[:from_location]) %>
+    </div>
+
+    <div>
+      <%= select_tag :to_location, options_from_collection_for_select(@locations, :first, :last, params[:to_location]) %>
+    </div>
+
+    <div>
+      <%= number_field_tag 'weight', params[:weight], min: 1, max: @max_weight %>
+    </div>
+
+    <div>
+      <%= submit_tag "Выполнить" %>
+    </div>
+
+  <% end %>
+
+  <% if @result.present? %>
+    <%= "Тралала ваша деньга нужна #{@result['rsp']['price']}" %>
+    <%= "#{@result['rsp']['term']['min']} – минимальный срок доставки;" %>
+    <%= "#{@result['rsp']['term']['max']} – максимальный срок доставки." %>
+  <% end %>
+
+</div>
+
