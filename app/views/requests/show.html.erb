@@ -9,6 +9,7 @@
   </div> -->
 
   <%= form_tag request_path, method: :get do  %>
+
     <div>
       <%= select_tag :from_location, options_from_collection_for_select(@locations, :first, :last, params[:from_location]) %>
     </div>
@@ -18,7 +19,7 @@
     </div>
 
     <div>
-      <%= number_field_tag 'weight', params[:weight], min: 1, max: @max_weight %>
+      <%= number_field_tag 'weight', params[:weight].nil? ? 1 : params[:weight], min: 1, max: 999 %>
     </div>
 
     <div>
@@ -27,11 +28,6 @@
 
   <% end %>
 
-  <% if @result.present? %>
-    <%= "Тралала ваша деньга нужна #{@result['rsp']['price']}" %>
-    <%= "#{@result['rsp']['term']['min']} – минимальный срок доставки;" %>
-    <%= "#{@result['rsp']['term']['max']} – максимальный срок доставки." %>
-  <% end %>
 
 </div>
 

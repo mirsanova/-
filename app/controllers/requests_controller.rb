@@ -1,6 +1,7 @@
 class RequestsController < ApplicationController
   require 'open-uri'
 
+
   def show
   	# response = open('http://emspost.ru/api/rest?method=ems.calculate&from=city--moskva&to=region--omskaja-oblast&weight=1.5').read
   	# result = JSON.parse(response)
@@ -14,15 +15,14 @@ class RequestsController < ApplicationController
     get_locations
     get_max_weight
 
-    puts params[:from_location]
-    puts params[:to_location]
+    if params[:weight].blank?
+      flash[:error] = "Вес не должен быть пустым"
+      render 'show'
+    end
 
-    if (params[:to_location] != nil && params[:from_location] != nil)
-      if params[:weight] > @max_weight
-        puts 'errorr!'
-      else
-        calculate
-      end
+    if !params[:weight].blank? && params[:weight] > @max_weight
+      flash[:error] = "Вес не должен быть больше максимального"
+      render 'show'
     end
 
   end
@@ -53,7 +53,5 @@ class RequestsController < ApplicationController
     @result = JSON.parse(response)
     puts "------!!!!!-------!!!!!!------"
     puts @result
-
-
   end
 end
