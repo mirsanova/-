@@ -3,9 +3,20 @@ class RequestsController < ApplicationController
 
   def show
 
+     @request = Request.new(params)
+
+
     flash[:error] = ""
     @locations = Emspost::Request.get_locations()
     @max_weight = Emspost::Request.get_max_weight()
+
+    @request.max_weight = @max_weight.to_f
+    if @request.valid?
+        puts "good"
+    else
+      puts "erroer"
+    end
+
 
     if params[:from_location].nil? && params[:to_location].nil?
       puts 'error!'
@@ -34,7 +45,7 @@ class RequestsController < ApplicationController
   end
 
   def new
-    @request = Request.new
+    @request = Request.new(params)
   end
 
 end
