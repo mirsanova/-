@@ -1,33 +1,51 @@
 <div class="container">
-
-<!--   <div>
-    <p>Ответ с сервера <%= @result_msg %></p>
-	<p>Stat: <%= @result_stat %></p>
-	<p>Price: <%= @result_price %></p>
-	<p>Term-min: <%= @result_term_min %></p>
-	<p>Term-max: <%= @result_term_max %></p>
-  </div> -->
-
-  <%= form_tag request_path, method: :get do  %>
-
-    <div>
-      <%= select_tag :from_location, options_from_collection_for_select(@locations, :first, :last, params[:from_location]) %>
+  <div class="background-style">
+    <div class="text-center">
+      <h1 class="text-info">Cтоимость и сроки доставки</h1>
     </div>
-
-    <div>
-      <%= select_tag :to_location, options_from_collection_for_select(@locations, :first, :last, params[:to_location]) %>
+    <%= form_tag request_show_path, method: :post, class: 'form-horizontal' do  %>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <%= label_tag [:from_location], 'Пункт отправления' %>
+        <%= select_tag [:from_location], options_from_collection_for_select(@locations, :first, :last, params[:from_location]), class: 'form-control' %>
+      </div>
     </div>
-
-    <div>
-      <%= number_field_tag 'weight', params[:weight].nil? ? 1 : params[:weight], min: 1, max: 999 %>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <%= label_tag [:to_location], 'Пункт прибытия' %>
+        <%= select_tag [:to_location], options_from_collection_for_select(@locations, :first, :last, params[:to_location]), class: 'form-control'  %>
+      </div>
     </div>
-
-    <div>
-      <%= submit_tag "Выполнить" %>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <%= label_tag [:weight], 'Вес' %>
+        <%= number_field_tag 'weight', params[:weight].nil? ? 0.1 : params[:weight], min: 0.1, max: 999, step: 0.1, class: 'form-control' %>
+      </div>
     </div>
-
-  <% end %>
-
-
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <%= label_tag 'price', 'Цена' %>
+        <%= text_field_tag 'price', @result_price, class: 'form-control', disabled: 'disabled' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <%= label_tag 'term_min', 'Минимальный срок доставки' %>
+        <%= text_field_tag 'term_min', @result_term_min, class: 'form-control', disabled: 'disabled' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <%= label_tag 'term_max', 'Максимальный срок доставки' %>
+        <%= text_field_tag 'term_max', @result_term_max, class: 'form-control', disabled: 'disabled' %>
+      </div>
+    </div>
+    <div class="form-btn text-center">
+      <nav>
+         <div class="btn-group">
+          <%= submit_tag "Выполнить", class: 'btn btn-success', role: 'button' %>
+        </div>
+      </nav>
+    <% end %>
 </div>
 
