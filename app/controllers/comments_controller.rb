@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
   http_basic_authenticate_with name: "dhh", password: "secret", only: :destroy
 
   def create
+    @comments = Comments.All
     @comment = @article.comments.new(comment_params)
     if @article.save
       redirect_to @article
