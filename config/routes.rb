@@ -4,10 +4,11 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :requests, only: :show
+  resources :request, only: :index
+  post "/request", to: "request#index"
 
-  post "/request/show", to: "requests#show"
-  
+  resources :api, only: :index
+  post "/api", to: "api#calculate_ems"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
