@@ -1,5 +1,14 @@
 $(function() {
-  $('#test_submit').on("click", function(){
+
+  var form = $('#form'),
+      msg = $('#msg'),      
+      submit = form.find('#test_submit'),
+      price = form.find('#price'),
+      term_min = form.find('#term_min'),
+      term_max = form.find('#term_max');      
+
+  submit.on("click", function(){
+   
     $.ajax({
       type: "POST",
       dataType: "json",
@@ -10,14 +19,17 @@ $(function() {
         },
       success: function(data, textStatus, xhr) {
         if (data.err_msg == null) {
-          $('#price').val(data.price)
-          $('#term_min').val(data.term_min)
-          $('#term_max').val(data.term_max)
+          msg.children().text('');
+          msg.css('display', 'none');
+          price.val(data.price);
+          term_min.val(data.term_min);
+          term_max.val(data.term_max);
         } else {
-          alert(data.err_msg);
-          $('#price').val('')
-          $('#term_min').val('')
-          $('#term_max').val('')
+          msg.children().text(data.err_msg);
+          msg.css('display', 'block')
+          price.val('');
+          term_min.val('');
+          term_max.val('');
         };
       }
     });

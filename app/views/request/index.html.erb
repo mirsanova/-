@@ -1,9 +1,17 @@
 <div class="container">
   <div class="background-style">
-    <div class="text-center">
-      <h1 class="text-info">Cтоимость и сроки доставки</h1>
+    <div class="row">
+      <div id = "msg", class="msg alert alert-danger col-md-offset-4 col-md-4">
+        <p class="text-center"></p>
+      </div>
     </div>
-    <%= form_tag request_path, remote: true, class: 'form-horizontal' do  %>
+    <div class="row">
+      <div class="text-center">
+        <h1 class="text-info">Cтоимость и сроки доставки</h1>
+      </div>
+    </div>  
+    
+    <%= form_tag request_path, remote: true, id: 'form', class: 'form-horizontal' do  %>
 
     <div class="row">
       <div class="col-md-4 col-md-offset-4">

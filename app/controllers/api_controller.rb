@@ -11,7 +11,7 @@ class ApiController < ApplicationController
     if params[:weight].blank?
       err_msg = "Вес не должен быть пустым"
     elsif !params[:weight].blank? && params[:weight].to_f > max_weight.to_f
-      err_msg = "Вес не должен быть больше максимального"
+      err_msg = "Вес не должен быть больше максимального, максимальный вес - #{max_weight}"
     else
       res = Emspost::Request.calculate(params[:from_location], params[:to_location], params[:weight])
 
