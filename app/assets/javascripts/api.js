@@ -20,7 +20,7 @@ $(function() {
       success: function(data, textStatus, xhr) {
         if (data.err_msg == null) {
           msg.children().text('');
-          msg.css('display', 'none');
+          msg.removeAttr('style');
           price.val(data.price);
           term_min.val(data.term_min);
           term_max.val(data.term_max);
