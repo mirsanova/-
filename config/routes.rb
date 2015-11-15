@@ -4,17 +4,16 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :request, only: :index
-  post "/request", to: "request#index"
+  resource :search, only: [:new, :show, :edit, :create]
+  post '/search/calculate_ems' => 'searches#calculate_ems', :as => "search/calculate_ems"
 
-  resources :api, only: :index
-  post "/api", to: "api#calculate_ems"
+  # post "/api", to: "api#calculate_ems"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+
 
 
   # Example of regular route:

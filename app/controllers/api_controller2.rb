@@ -1,4 +1,4 @@
-class ApiController < ApplicationController
+class ApiController2 < ApplicationController
   def calculate_ems
     require 'open-uri'
 
