@@ -11,11 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151105104952) do
+ActiveRecord::Schema.define(version: 20151116175725) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
     t.text     "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -29,5 +35,19 @@ ActiveRecord::Schema.define(version: 20151105104952) do
   end
 
   add_index "comments", ["article_id"], name: "index_comments_on_article_id"
+
+  create_table "deliveries", force: :cascade do |t|
+    t.string   "from_location", null: false
+    t.string   "to_location",   null: false
+    t.decimal  "weight",        null: false
+    t.integer  "price",         null: false
+    t.integer  "term_min",      null: false
+    t.integer  "term_max",      null: false
+    t.integer  "category_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "deliveries", ["category_id"], name: "index_deliveries_on_category_id"
 
 end

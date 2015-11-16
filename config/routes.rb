@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   resource :search, only: [:new, :show, :edit, :create]
   post '/search/calculate_ems' => 'searches#calculate_ems', :as => "search/calculate_ems"
 
+  resources :categories do
+    resources :deliveries
+  end
+
   # post "/api", to: "api#calculate_ems"
 
   # The priority is based upon order of creation: first created -> highest priority.
