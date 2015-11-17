@@ -11,35 +11,47 @@
           <th class='text-center'>Описание</th>
           <th class='text-center'>Вес</th>
           <th class='text-center'>Выбор категории</th>          
+          <th class='text-center'></th>
+          <th class='text-center'></th>          
         </tr>
       </thead>
       <tbody>  
           <% @categories.each do |category| %>
-
           <tr>
             <td>
-              <p class="text-center"><%= @category.name %></p>
+              <p class="text-center"><%= category.name %></p>
             </td>
             <td>
-              <p class="text-center"><%= @category.describe %></p>
+              <p class="text-center"><%= category.description %></p>
             </td>
             <td>
-              <p class="text-center"> <%= @category.describe_weightt%> </p>
+              <p class="text-center"> <%= category.weight%> </p>
             </td>
             <td>
               <p class="text-center"><input type="checkbox"/></p>
+            </td>
+            <td class="text-center">
+              <%= link_to edit_category_path(category) do %>
+                <span class="fa fa-pencil-square-o"></span>
+              <% end %>
+            </td>
+            <td class="text-center">
+              <%= link_to category_path(category),
+                    method: :delete,
+                    data: { confirm: 'Are you sure?' } do %>
+                <span class="fa fa-times"></span>
+              <% end %>
             </td>            
           </tr>
-
           <% end %>
-
       </tbody>
     </table>
     </div>
     <div class="text-center">
       <nav>
         <div class="btn-group">
-          <button class="btn btn-success">Сохранить</button>
+          <%= link_to 'Назад', root_path, class: 'btn btn-primary', role: 'button' %>
+          <%= link_to 'Новая категория', new_category_path, class: 'btn btn-success', role: 'button' %>
         </div>
       </nav>
     </div>

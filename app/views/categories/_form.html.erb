@@ -1,0 +1,28 @@
+<%= form_for @category, class: 'form-horizontal' do |f| %>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <%=f.label :name, "Категория", class: 'control-label' %>
+      <%= f.text_field :name, class: 'form-control', type: 'text' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <%=f.label :description,"Описание", class: 'control-label' %>
+      <%= f.text_field :description, class: 'form-control', type: 'text' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <%=f.label :weight,"Вес", class: 'control-label' %>
+      <%= f.text_field :weight, class: 'form-control', type: 'text' %>
+    </div>
+  </div>
+  <div class="form-btn text-center">
+  	<nav>
+    		 <div class="btn-group">
+    			<%= link_to 'Назад', categories_path, class: 'btn btn-primary', role: 'button'%>
+      		<%= f.submit 'Создать', class: 'btn btn-success', role: 'button' %>
+    		</div>
+    </nav>
+  </div>
+<% end %>
