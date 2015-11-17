@@ -3,14 +3,13 @@
     <div class="text-center">
       <h1 class="text-info">Категории отправлений</h1>
     </div>
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-8 col-md-offset-2">
     <table class="table table-hover">
       <thead>
         <tr>
-          <th class='text-center'>Категория</th>
-          <th class='text-center'>Описание</th>
-          <th class='text-center'>Вес</th>
-          <th class='text-center'>Выбор категории</th>          
+          <th>Категория</th>
+          <th>Описание</th>
+          <th>Вес</th>               
           <th class='text-center'></th>
           <th class='text-center'></th>          
         </tr>
@@ -19,16 +18,13 @@
           <% @categories.each do |category| %>
           <tr>
             <td>
-              <p class="text-center"><%= category.name %></p>
+              <p><%= category.name %></p>
             </td>
             <td>
-              <p class="text-center"><%= category.description %></p>
+              <p><%= category.description %></p>
             </td>
             <td>
-              <p class="text-center"> <%= category.weight%> </p>
-            </td>
-            <td>
-              <p class="text-center"><input type="checkbox"/></p>
+              <p> <%= category.weight%> </p>
             </td>
             <td class="text-center">
               <%= link_to edit_category_path(category) do %>
