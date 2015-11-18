@@ -1,4 +1,5 @@
 class DeliveriesController < ApplicationController
+	require 'open-uri'
 	before_action :locations_all
 	def new
     	@deliveries = Delivery.new
