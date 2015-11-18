@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     resources :deliveries
   end
 
+  resources :deliveries
+  
   root 'welcome#index'
 
   # post "/api", to: "api#calculate_ems"
