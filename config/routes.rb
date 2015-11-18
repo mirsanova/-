@@ -4,14 +4,10 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resource :search, only: [:new, :show, :edit, :create]
-  post '/search/calculate_ems' => 'searches#calculate_ems', :as => "search/calculate_ems"
-
-  resources :categories do
-    resources :deliveries
-  end
-
+  resources :categories
   resources :deliveries
+  
+  post '/deliveries/calculate_ems' => 'deliveries#calculate_ems', :as => "deliveries/calculate_ems"
   
   root 'welcome#index'
 
