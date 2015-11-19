@@ -10,7 +10,7 @@
         <h1 class="text-info">Cтоимость и сроки доставки</h1>
       </div>
     </div>
-    <%= form_for @delivery, id: 'form', class: 'form-horizontal' do |f|   %>
+    <%= form_for @delivery, id: 'new_delivery', class: 'form-horizontal' do |f|   %>
     <%= render 'common/errors', resource: @delivery %>
     <div class="row">
       <div class="col-md-4 col-md-offset-4">
@@ -34,32 +34,31 @@
     <div class="row">
       <div class="col-md-4 col-md-offset-4">
         <%= f.label :weight, 'Вес' %>
-        <%= f.number_field 'weight',  class: 'form-control' %>
+        <%= f.number_field 'weight', step: 0.1, min: 0.1, class: 'form-control' %>
       </div>
     </div>
     <div class="row">
       <div class="col-md-4 col-md-offset-4">
         <%= f.label 'price', 'Цена' %>
-        <%= f.number_field 'price', class: 'form-control'%>
+        <%= f.number_field 'price', readonly: true, class: 'form-control'%>
       </div>
     </div>
     <div class="row">
       <div class="col-md-4 col-md-offset-4">
         <%= f.label 'term_min', 'Минимальный срок доставки' %>
-        <%= f.number_field 'term_min', class: 'form-control' %>
+        <%= f.number_field 'term_min', readonly: true, class: 'form-control' %>
       </div>
     </div>
     <div class="row">
       <div class="col-md-4 col-md-offset-4">
         <%= f.label 'term_max', 'Максимальный срок доставки' %>
-        <%= f.number_field 'term_max', class: 'form-control' %>
+        <%= f.number_field 'term_max', readonly: true, class: 'form-control' %>
       </div>
     </div>
     <div class="form-btn text-center">
       <nav>
          <div class="btn-group">
-          <%= link_to 'Назад', categories_path, class: 'btn btn-primary', role: 'button' %>
-          
+          <%= link_to 'Назад', deliveries_path, class: 'btn btn-primary', role: 'button' %>          
           <%= submit_tag "Рассчитать стоимость", class: 'btn btn-warning', id: 'calculate' %> 
           <%= submit_tag 'Создать', class: 'btn btn-success', role: 'button' %> 
         </div>

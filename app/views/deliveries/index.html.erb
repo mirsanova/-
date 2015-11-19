@@ -1,0 +1,43 @@
+<div class="background-style">
+  <div class="panel-group" id="accordion">  
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><i class="fa fa-folder-o"></i> Сервис</a>
+        </h4>
+      </div>
+      <div id="collapseOne" class="panel-collapse collapse in">
+        <div class="panel-body">
+          <ul class="list-group">        
+            <% @deliveries.each do |delivery| %>
+            <li class="list-group-item">
+              <%= link_to "Доставка #{delivery.id}", delivery_path(delivery) %>
+            </li>            
+            <%end%> 
+            <li class="list-group-item"><i class="fa fa-plus-square-o"></i> <%= link_to 'cоздать доставку', new_delivery_path %></li>     
+          </ul>
+        </div>    
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><i class="fa fa-folder-o"></i> Категории</a>
+        </h4>
+      </div> 
+      <div id="collapseTwo" class="panel-collapse collapse in"> 
+        <div class="panel-body">
+          <ul class="list-group">        
+            <% @categories.each do |category| %>
+            <li class="list-group-item">
+              <%= link_to "#{category.name}", categories_path %>
+            </li>            
+            <%end%>
+            <li class="list-group-item"><i class="fa fa-plus-square-o"></i><%= link_to ' cоздать категорию', new_category_path %></li>      
+          </ul>
+        </div>
+      </div>    
+    </div>
+  </div>
+</div>
+
+

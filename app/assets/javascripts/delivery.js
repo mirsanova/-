@@ -8,7 +8,7 @@ $(function() {
       term_max = form.find('#delivery_term_max');
 
 
-$('#calculate').click(function(e) {
+$('#calculate').on('click',function(e) {
   e.preventDefault();
  $.ajax({
       type: "POST",

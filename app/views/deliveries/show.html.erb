@@ -1,0 +1,86 @@
+<div class="container">
+  <div class="background-style">
+    <div class="row">
+      <div id = "msg", class="msg alert alert-danger col-md-offset-4 col-md-4">
+        <p class="text-center"></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="text-center">
+        <h1 class="text-info">Доставка</h1>
+      </div>
+    </div>   
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <table class="table table-hover">
+          <tbody>
+            <tr>
+              <td>            
+                <strong>Категория отправления:</strong>              
+              </td>
+              <td>              
+                <%= @delivery.category.description %>           
+              </td>            
+            </tr>
+            <tr>
+              <td>               
+                <strong>Пункт отправления:</strong>              
+              </td>
+              <td>              
+                <%= @locations_all[@delivery.from_location] %>             
+              </td>            
+            </tr>
+             <tr>
+              <td>               
+                <strong>Пункт прибытия:</strong>               
+              </td>
+              <td>              
+                <%= @locations_all[@delivery.to_location] %>               
+              </td>            
+            </tr>
+            <tr>
+              <td>              
+                <strong>Вес:</strong>               
+              </td>
+              <td>               
+                <%= @delivery.weight %>               
+              </td>            
+            </tr>
+            <tr>
+              <td>                
+                <strong>Цена:</strong>                
+              </td>
+              <td>               
+                <%= @delivery.price %>                
+              </td>            
+            </tr>
+            <tr>
+              <td>                
+                <strong>Минимальный срок доставки:</strong>                
+              </td>
+              <td>               
+                <%= @delivery.term_min %>             
+              </td>            
+            </tr>
+            <tr>
+              <td>                
+                <strong>Максимальный срок доставки:</strong>                
+              </td>
+              <td>               
+                <%= @delivery.term_max %>               
+              </td>            
+            </tr>
+          </tbody>
+        </table>   
+        <div class="text-center">
+          <nav>
+            <div class="btn-group">
+              <%= link_to 'Удалить', delivery_path(@delivery), method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger', role: 'button' %>
+              <%= link_to 'Вернуться на главную страницу', deliveries_path, class: 'btn btn-primary', role: 'button' %>
+            </div>
+          </nav>
+        </div> 
+      </div>
+    </div>          
+  </div>   
+</div>

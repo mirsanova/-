@@ -2,6 +2,17 @@ class DeliveriesController < ApplicationController
   require 'open-uri'
     before_action :locations_all
 
+  def index
+    @deliveries = Delivery.all
+    @categories = Category.all   
+  end
+
+  def show
+    @delivery = Delivery.find(params[:id])
+    @category = @delivery.category
+  
+  end
+
   def new
     @delivery  = Delivery.new
     @locations = Hash.new
@@ -18,37 +29,45 @@ class DeliveriesController < ApplicationController
     end
   end
 
+  def destroy
+    @delivery = Delivery.find(params[:id])
+    @delivery.destroy
+
+    redirect_to deliveries_path
+  end
+
   def locations_all
     @locations_all ||= Emspost::Request.get_locations()
   end
 
   def calculate_ems
-    puts params[:weight] 
-    puts params[:category_id]
-    puts Category.find(params[:category_id]).description
+    max_weight ||= Emspost::Request.get_max_weight()
 
-        max_weight ||= Emspost::Request.get_max_weight()
+    result_price = ""
+    result_term_min = ""
+    result_term_max = ""
 
-        result_price = ""
-        result_term_min = ""
-        result_term_max = ""
+    if params[:weight].blank?
+      err_msg = "Вес не должен быть пустым"
+    elsif !params[:weight].blank? && params[:weight].to_f > max_weight.to_f
+      err_msg = "Вес не должен быть больше максимального, максимальный вес - #{max_weight}"
+    else
+      category = Category.find(params[:category_id])
+      category_weight = Category.find(params[:category_id]).weight
+      if params[:weight].to_f > category_weight
+        err_msg = "Для категории #{category.description} вес не должен превышать #{category_weight} кг."
+      else   
+      res = Emspost::Request.calculate(params[:from_location], params[:to_location], params[:weight])
 
-        if params[:weight].blank?
-          err_msg = "Вес не должен быть пустым"
-        elsif !params[:weight].blank? && params[:weight].to_f > max_weight.to_f
-          err_msg = "Вес не должен быть больше максимального, максимальный вес - #{max_weight}"
+        if !res.nil?
+          result_price = res['price']
+          result_term_min = res['term']['min']
+          result_term_max = res['term']['max']
         else
-          res = Emspost::Request.calculate(params[:from_location], params[:to_location], params[:weight])
-
-          if !res.nil?
-             result_price = res['price']
-             result_term_min = res['term']['min']
-              result_term_max = res['term']['max']
-        else
-           err_msg = "Запрос не выполнен"
-          end
-    end
-
+          err_msg = "Запрос не выполнен"
+        end
+      end
+    end   
     respond_to do |format|
       format.html
       if err_msg.nil?
@@ -56,7 +75,6 @@ class DeliveriesController < ApplicationController
       else
         format.json { render :json => { :text => err_msg }, status: 400 }
       end
-
     end
   end
 
