@@ -9,6 +9,7 @@ $(function() {
 
 
 $('#calculate').on('click',function(e) {
+
   e.preventDefault();
  $.ajax({
       type: "POST",
