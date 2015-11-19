@@ -12,8 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require delivery
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
-//= require delivery
+
 
