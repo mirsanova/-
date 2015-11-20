@@ -1,5 +1,5 @@
 class Category < ActiveRecord::Base
-  has_many :deliveries
+  has_many :deliveries, dependent: :destroy
 end
 
 

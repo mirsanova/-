@@ -13,8 +13,14 @@
   </div>
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
-      <%=f.label :weight,"Вес", class: 'control-label' %>
+      <%=f.label :weight,"Макс.вес", class: 'control-label' %>
       <%= f.text_field :weight, class: 'form-control', type: 'text' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <%=f.label :min_weight,"Мин.вес", class: 'control-label' %>
+      <%= f.text_field :min_weight, class: 'form-control', type: 'text' %>
     </div>
   </div>
   <div class="form-btn text-center">

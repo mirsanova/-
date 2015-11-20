@@ -9,7 +9,8 @@
         <tr>
           <th>Категория</th>
           <th>Описание</th>
-          <th>Макс.вес</th>               
+          <th>Макс.вес</th>
+           <th>Мин.вес</th>                
           <th class='text-center'></th>
           <th class='text-center'></th>          
         </tr>
@@ -25,6 +26,9 @@
             </td>
             <td>
               <p> <%= category.weight%> </p>
+            </td>
+            <td>
+              <p> <%= category.min_weight%> </p>
             </td>
             <td class="text-center">
               <%= link_to edit_category_path(category) do %>

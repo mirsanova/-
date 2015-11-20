@@ -53,9 +53,15 @@ class DeliveriesController < ApplicationController
       err_msg = "Вес не должен быть больше максимального, максимальный вес - #{max_weight}"
     else
       category = Category.find(params[:category_id])
+      puts category.min_weight
+      puts category.weight
+      puts params[:weight].to_f
+      puts params[:weight].to_f > category.weight
+      puts params[:weight].to_f < category.min_weight
 
-      if params[:weight].to_f > category.weight
-        err_msg = "Для категории #{category.description} вес не должен превышать #{category.weight} кг."
+
+      if params[:weight].to_f > category.weight || params[:weight].to_f < category.min_weight
+        err_msg = "Для категории #{category.description} вес не должен превышать #{category.weight} кг и не должен быть менее #{category.min_weight} кг."
       else   
       res = Emspost::Request.calculate(params[:from_location], params[:to_location], params[:weight])
 
