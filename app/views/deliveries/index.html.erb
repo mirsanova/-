@@ -9,18 +9,18 @@
       <div id="collapseOne" class="panel-collapse collapse in">
         <div class="panel-body">
           <% @categories.each do |category| %>
-            <div><strong><%= category.description %></strong><div>
+            <div><strong><%= category.description %></strong></div>            
             <ul class="list-group">        
-              <% @deliveries.each do |delivery| %>
+              <% category.deliveries.each do |delivery| %>
                 <li class="list-group-item">
                   <%= link_to "Доставка #{delivery.id}", delivery_path(delivery) %>
                 </li>            
-              <%end%> 
-              <li class="list-group-item"><i class="fa fa-plus-square-o"></i> <%= link_to 'cоздать доставку', new_delivery_path, method: :get %></li>     
+              <%end%>                  
             </ul>
-          <%end%>  
+          <%end%>
+          <div><i class="fa fa-plus-square-o"></i> <%= link_to 'cоздать доставку', new_delivery_path, method: :get %></div>          
         </div>    
-    </div>
+      </div>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
@@ -32,7 +32,7 @@
           <ul class="list-group">                    
             <% @categories.each do |category| %>
             <li class="list-group-item">
-              <%= link_to "#{category.name}", edit_category_path(category) %>
+              <%= link_to "#{category.description}", edit_category_path(category) %>
             </li>            
             <%end%>
             <li class="list-group-item"><%= link_to ' Все категории', categories_path %></li>
@@ -45,3 +45,5 @@
 </div>
 
 
+      
+ 
