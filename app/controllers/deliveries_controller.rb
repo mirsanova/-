@@ -4,7 +4,12 @@ class DeliveriesController < ApplicationController
 
   def index
     @deliveries = Delivery.all
-    @categories = Category.all   
+    @categories = Category.all
+
+
+    @categories = Category.search(params[:search])
+
+
   end
 
   def show
@@ -82,7 +87,8 @@ class DeliveriesController < ApplicationController
         format.json { render :json => { :text => err_msg }, status: 400 }
       end
     end
-  end
+  end 
+ 
 
   private
     def delivery_params

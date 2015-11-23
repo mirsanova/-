@@ -7,4 +7,5 @@ class Delivery < ActiveRecord::Base
   validates :price, presence: true
   validates :term_min, presence: true
   validates :term_max, presence: true
+ 
 end

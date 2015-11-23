@@ -1,4 +1,4 @@
-<div class="background-style">
+<div class="background-style">  
   <div class="panel-group" id="accordion">  
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -29,6 +29,16 @@
       </div> 
       <div id="collapseTwo" class="panel-collapse collapse in"> 
         <div class="panel-body">
+
+          <%= form_tag deliveries_path, :method => 'get', :id => "categories_search" do %>
+            <p>
+              <%= text_field_tag :search, params[:search] %>
+              <%= submit_tag "Search", :name => nil %>
+            </p>
+            <div id="categories"><%= render 'categories/categories' %></div>
+          <% end %>
+
+
           <ul class="list-group">                    
             <% @categories.each do |category| %>
             <li class="list-group-item">

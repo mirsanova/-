@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require delivery
+//= require category
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .

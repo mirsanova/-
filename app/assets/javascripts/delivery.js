@@ -34,10 +34,4 @@ $('#calculate').on('click',function(e) {
 
 
 });
-
-
-
-
-
-
 });
