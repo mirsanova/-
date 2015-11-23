@@ -3,9 +3,9 @@ class Category < ActiveRecord::Base
 
   def self.search(search)
     if search
-      where('name LIKE ?', "%#{search}%")
+      where('description LIKE ?', "%#{search}%")
     else
-      Category.all
+      where(nil)
     end
   end   
 end

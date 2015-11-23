@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20151120053655) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "description"
-    t.decimal  "weight"
+    t.string   "weight"
     t.decimal  "min_weight"
   end
 

@@ -4,12 +4,9 @@ class DeliveriesController < ApplicationController
 
   def index
     @deliveries = Delivery.all
-    @categories = Category.all
-
-
     @categories = Category.search(params[:search])
-
-
+    puts @categories.count
+    puts '123'
   end
 
   def show
