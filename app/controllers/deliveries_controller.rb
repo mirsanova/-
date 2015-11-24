@@ -5,15 +5,26 @@ class DeliveriesController < ApplicationController
 
   def index
     @deliveries = Delivery.all
-    @categories = Category.all
+    @categories = Category.sortered
    
   end
 
   def search
     @categories = Category.search(params[:search])
+    puts @categories.first
+    
+    categories = [] 
+    @categories.each do |cat| 
+      categories << { 
+        id: cat.id, 
+        description: cat.description, 
+        link: edit_category_path(cat) 
+      } 
+    end 
+
     respond_to do |format|
         format.html
-        format.json { render :json => @categories}
+        format.json { render :json => categories}
       end
   end
 
