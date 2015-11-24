@@ -1,13 +1,28 @@
 $(function() {
 
 
-$("#categories_search input").keyup(function() {
+$('#categories_search input').keyup(function(e) {
 
-    $.get($("#categories_search").attr("action"), $("#categories_search").serialize(), null, "script");
-    return false;
-  });
+  e.preventDefault();
+  search = $('#search').val()
+ $.ajax({
+      type: "POST",
+      dataType: "json",
+      url: "/deliveries/search",
+      data: { category_id: $('#search').val()},
+      error: function(data, textStatus, xhr){
+         console.log('error');
+        },
+      success: function(data, textStatus, xhr) {
+      	console.log('succes');
+      	console.log($('#search').val());
+
+         
 
 
+      }
+    });
 
 
+});
 });

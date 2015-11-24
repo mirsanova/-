@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   resources :categories
   resources :deliveries
+
+  post '/deliveries/search' => 'deliveries#search', :as => "deliveries/search"
   
   post '/deliveries/calculate_ems' => 'deliveries#calculate_ems', :as => "deliveries/calculate_ems"
   

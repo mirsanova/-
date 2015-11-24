@@ -1,18 +1,29 @@
 class DeliveriesController < ApplicationController
+  include ApplicationHelper
   require 'open-uri'
     before_action :locations_all
 
   def index
     @deliveries = Delivery.all
-    @categories = Category.search(params[:search])
-    puts @categories.count
-    puts '123'
+    @categories = Category.all
+   
   end
+
+  def search
+    @categories = Category.search(params[:search])
+    respond_to do |format|
+        format.html
+        format.json { render :json => @categories}
+      end
+  end
+
+
+
+
 
   def show
     @delivery = Delivery.find(params[:id])
-    @category = @delivery.category
-  
+    @category = @delivery.category  
   end
 
   def new
@@ -55,12 +66,6 @@ class DeliveriesController < ApplicationController
       err_msg = "Вес не должен быть больше максимального, максимальный вес - #{max_weight}"
     else
       category = Category.find(params[:category_id])
-      puts category.min_weight
-      puts category.weight
-      puts params[:weight].to_f
-      puts params[:weight].to_f > category.weight
-      puts params[:weight].to_f < category.min_weight
-
 
       if params[:weight].to_f > category.weight || params[:weight].to_f < category.min_weight
         err_msg = "Для категории #{category.description} вес не должен превышать #{category.weight} кг и не должен быть менее #{category.min_weight} кг."

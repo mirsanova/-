@@ -12,7 +12,7 @@ $('#calculate').on('click',function(e) {
 
   e.preventDefault();
  $.ajax({
-      type: "POST",
+      type: "GET",
       dataType: "json",
       url: "/deliveries/calculate_ems",
       data: { category_id: $('#delivery_category_id').val(), from_location: $('#delivery_from_location option:selected').val(), to_location: $('#delivery_to_location option:selected').val(), weight: $('#delivery_weight').val() },
