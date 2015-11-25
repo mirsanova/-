@@ -53,15 +53,15 @@ class DeliveriesController < ApplicationController
   end
 
   def delete_category
-       
-    @categories = Category.find(params[:id])
-    @categories.destroy
+  
+    category = Category.find(params[:category_id])
+    category.destroy
 
     respond_to do |format|
       format.html
-      format.json { render :json => @categories}
+      format.json { render :json => Category.all}
     end
-
+   
   end
 
 

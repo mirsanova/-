@@ -43,24 +43,38 @@ $(function() {
   });
 
 
-
-
-
-
-
-
-$('.del_link').on('click', function (e) {
+$('.del_link' ).on('click', function (e) {
 	e.preventDefault();
-
+console.log(this.id );
  	$.ajax({
         type: "POST",
         url: "/deliveries/delete_category",
         dataType: "json",
-        data: {category_id: $('.del')},
-        complete: function(){
-            
-            alert('hujkhjk');
+        data: { category_id: this.id },
+        error: function(data, textStatus, xhr){
+          console.log('error');
+        },
+         success: function(data, textStatus, xhr) {
+          var length = $('ul#categories li').length,
+          cur_id = 0;        
+
+          $('ul#categories li').each(function () { 
+            if (cur_id < length-2) {
+              $(this).remove(); 
+            }
+            cur_id++;
+          });
+
+          for (i in data) {          
+            $('#categories').prepend('<li class="list-group-item" >' + '<a href ="' + data[i].link  + '">' + data[i].description + "</a> </li>");          
+          }  
         }
+
+
+
+
+
+
     });
    
     
