@@ -75,8 +75,8 @@
         <div class="text-center">
           <nav>
             <div class="btn-group">
-              <%= link_to 'Удалить', delivery_path(@delivery), method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger', role: 'button' %>
-              <%= link_to 'Вернуться на главную страницу', deliveries_path, class: 'btn btn-primary', role: 'button' %>
+              <%= link_to 'Главная', deliveries_path, class: 'btn btn-primary', role: 'button', method: :get %>
+              <%= link_to 'Удалить', delivery_path(@delivery), method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger', role: 'button' %>       
             </div>
           </nav>
         </div> 

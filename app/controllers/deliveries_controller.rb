@@ -5,32 +5,8 @@ class DeliveriesController < ApplicationController
 
   def index
     @deliveries = Delivery.all
-    @categories = Category.sortered
-   
+    @categories = Category.sortered   
   end
-
-  def search
-    @categories = Category.search(params[:search])
-    puts @categories.first
-    
-    categories = [] 
-    @categories.each do |cat| 
-      categories << { 
-        id: cat.id, 
-        description: cat.description, 
-        link: edit_category_path(cat) 
-      } 
-    end 
-
-    respond_to do |format|
-        format.html
-        format.json { render :json => categories}
-      end
-  end
-
-
-
-
 
   def show
     @delivery = Delivery.find(params[:id])
@@ -59,6 +35,39 @@ class DeliveriesController < ApplicationController
 
     redirect_to deliveries_path
   end
+
+  def search
+    @categories = Category.search(params[:search])    
+    categories = [] 
+    @categories.each do |cat| 
+      categories << { 
+        id: cat.id, 
+        description: cat.description, 
+        link: edit_category_path(cat) 
+      } 
+    end
+    respond_to do |format|
+        format.html
+        format.json { render :json => categories}
+    end
+  end
+
+  def delete_category
+       
+    @categories = Category.find(params[:id])
+    @categories.destroy
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @categories}
+    end
+
+  end
+
+
+
+
+
 
   def locations_all
     @locations_all ||= Emspost::Request.get_locations()
@@ -101,7 +110,6 @@ class DeliveriesController < ApplicationController
       end
     end
   end 
- 
 
   private
     def delivery_params

@@ -1,64 +1,71 @@
-$(function() {
+$(function() {   
+
+  $('#categories_search input').keyup(function (e) {
 
 
-$('#categories_search input').keyup(function(e) {
+  	if ( e.keyCode > 46 && e.keyCode < 91 || e.keyCode > 95 && e.keyCode < 112 || e.keyCode == 8 || e.keyCode == 32){
 
-  e.preventDefault();
-  search = $('#search').val()
- $.ajax({
-      type: "POST",
-      dataType: "json",
-      url: "/deliveries/search",
-      data: { search: $('#search').val()},
-      error: function(data, textStatus, xhr){
-         console.log('error');
-        },
-      success: function(data, textStatus, xhr) {
+      
 
-        // $('#categories').html("");
-        //
+	  var count = $(this).val().length,
+	      num = 2;
+	     
+	  if(count > num || count == 0){
 
-        var length = $('ul#categories li').length;
-        var cur_id = 0
-        // for(var i=0; i < length-2; i++) {
-        //     $("li'").remove();
-        // }
-        // 
-        console.log(length);
+	    $.ajax({
+	      type: "POST",
+	      dataType: "json",
+	      url: "/deliveries/search",
+	      data: { search: $('#search').val()},
+	      error: function(data, textStatus, xhr){
+	        console.log('error');
+	      },
+	      success: function(data, textStatus, xhr) {
+	        var length = $('ul#categories li').length,
+	        cur_id = 0;        
 
-        $('ul#categories li').each(function () { // loops through all li
-            if (cur_id < length-2) {
-              $(this).remove(); // Remove li one by one
-            }
+	        $('ul#categories li').each(function () { 
+	          if (cur_id < length-2) {
+	            $(this).remove(); 
+	          }
+	          cur_id++;
+	        });
+
+	        for (i in data) {          
+	          $('#categories').prepend('<li class="list-group-item" >' + '<a href ="' + data[i].link  + '">' + data[i].description + "</a> </li>");          
+	        }  
+	      }
+		});
+	  }
+	
+	}    
+    
+  });
+
+
+
+
+
+
+
+
+$('.del_link').on('click', function (e) {
+	e.preventDefault();
+
+ 	$.ajax({
+        type: "POST",
+        url: "/deliveries/delete_category",
+        dataType: "json",
+        data: {category_id: $('.del')},
+        complete: function(){
             
-            cur_id++;
-        });
-
-        for (i in data) {
-          
-           $('#categories').prepend('<li class="list-group-item" >' + '<a href ="' + data[i].link  + '">' + data[i].description + "</a> </li>");
-    //            <li class="list-group-item">
-    //   <%= link_to "#{category.description}", edit_category_path(category) %>
-    //           $('#categories').append(" <li class='" + data[i].name + " fsadfdsa");
-    // </li>
-          // $('#categories').append(data[i].link);
-          //  $('#categories').append(data[i].name);          
+            alert('hujkhjk');
         }
-
-
-
-
-
-
-
-   //   data.categories.forEach(function(category){
-   //   $user_html = $("<div class='user'>" + category.name + "<!-- etc --!/></div>");
-   //   $('#usersList').append($user_html);
-   // });
-      }
     });
+   
+    
+  });
 
-});
 
-
+  
 });

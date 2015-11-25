@@ -1,14 +1,9 @@
-  <% @categories.each do |category| %>
-    <li class="list-group-item">
-      <%= link_to "#{category.description}", edit_category_path(category) %>
-    </li>            
-  <%end%>
-
-
-
-
-
-               
-
-
-  
+<% @categories.each do |category| %>
+  <li class="list-group-item">
+    <%= link_to "#{category.description}", edit_category_path(category), class:'del' %>
+    <i class="fa fa-pencil"></i>
+    <%= link_to deliveries_path, class:'del_link' do %>
+      <i class="fa fa-times"></i>
+    <% end %>
+  </li>            
+<%end%>  

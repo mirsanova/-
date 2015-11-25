@@ -58,7 +58,7 @@
     <div class="form-btn text-center">
       <nav>
          <div class="btn-group">
-          <%= link_to 'Назад', deliveries_path, class: 'btn btn-primary', role: 'button' %>          
+          <%= link_to 'Назад', deliveries_path, class: 'btn btn-primary', role: 'button', method: :get %>          
           <%= submit_tag "Рассчитать стоимость", class: 'btn btn-warning', id: 'calculate' %> 
           <%= submit_tag 'Создать', class: 'btn btn-success', role: 'button' %> 
         </div>

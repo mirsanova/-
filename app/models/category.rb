@@ -1,4 +1,5 @@
 class Category < ActiveRecord::Base
+
   has_many :deliveries, dependent: :destroy
 
   scope :sortered, -> { order(description: :asc) }
@@ -7,9 +8,7 @@ class Category < ActiveRecord::Base
     if search
       where('lower(description) LIKE ?', "%#{search.downcase}%").order("description DESC")  
     else
-      where(nil).order("description DESC")  
+      order("description DESC")  
     end
   end  
-
-
 end

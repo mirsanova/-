@@ -4,3 +4,14 @@
 .panel-body{
   min-height: 350px;
 }
+.list-group-item .fa{
+	visibility: hidden;
+	color: #428bca;
+}
+.list-group-item:hover .fa{
+	visibility: visible;
+}
+.list-group-item:last-child .fa{
+	visibility: visible;
+	color: inherit;
+}
