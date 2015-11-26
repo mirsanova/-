@@ -38,15 +38,9 @@ class DeliveriesController < ApplicationController
 
   def search
     @categories = Category.search(params[:search])    
-    categories = [] 
-
-    @categories.each do |cat| 
-      categories << { 
-        id: cat.id, 
-        description: cat.description, 
-        link: edit_category_path(cat) 
-      } 
-    end
+   
+    categories = get_categories_hash
+   
     respond_to do |format|
         format.html
         format.json { render :json => categories}
@@ -58,18 +52,9 @@ class DeliveriesController < ApplicationController
     category = Category.find(params[:category_id])
     category.destroy
 
-    @categories = Category.all
+    @categories = Category.all 
 
-
-    categories = [] 
-    @categories.each do |cat| 
-      categories << { 
-        id: cat.id, 
-        description: cat.description, 
-        link: edit_category_path(cat) 
-      } 
-      end 
-    
+    categories = get_categories_hash
 
     respond_to do |format|
       format.html
@@ -79,7 +64,18 @@ class DeliveriesController < ApplicationController
   end
 
 
+  def get_categories_hash
 
+    categories = [] 
+    @categories.each do |cat| 
+      categories << { 
+        id: cat.id, 
+        description: cat.description, 
+        link: edit_category_path(cat) 
+      } 
+      end 
+    categories
+  end
 
 
 

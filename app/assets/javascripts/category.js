@@ -53,7 +53,7 @@ $(function() {
 
 $('#categories').on('click','.del_link', function (e) {
 	e.preventDefault();
-	
+	var id_cat = this.id;
 
  	$.ajax({
         type: "POST",
@@ -68,7 +68,7 @@ $('#categories').on('click','.del_link', function (e) {
           var length = $('ul#categories li').length,
           cur_id = 0;
 
-          $(this).remove();      
+              
 
           $('ul#categories li').each(function () { 
             if (cur_id < length-2) {
@@ -77,6 +77,10 @@ $('#categories').on('click','.del_link', function (e) {
             cur_id++;
           });
 
+
+          
+
+          $("div[id=" + id_cat + "]").remove();
 
 
 
