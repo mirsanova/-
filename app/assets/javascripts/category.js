@@ -1,4 +1,7 @@
-$(function() {   
+$(function() {  
+
+
+
 
   $('#categories_search input').keyup(function (e) {
 
@@ -32,7 +35,11 @@ $(function() {
 	        });
 
 	        for (i in data) {          
-	          $('#categories').prepend('<li class="list-group-item" >' + '<a href ="' + data[i].link  + '">' + data[i].description + "</a> </li>");          
+	          $('#categories').prepend('<li class="list-group-item" >' + '<a href ="' + data[i].link  + '">' + data[i].description + "</a> </li>");
+	          console.log(data[i].link);
+          console.log(data[i].id);
+          console.log(data[i]);
+          console.log(i);          
 	        }  
 	      }
 		});
@@ -43,9 +50,11 @@ $(function() {
   });
 
 
-$('.del_link' ).on('click', function (e) {
+
+$('#categories').on('click','.del_link', function (e) {
 	e.preventDefault();
-console.log(this.id );
+	
+
  	$.ajax({
         type: "POST",
         url: "/deliveries/delete_category",
@@ -54,9 +63,12 @@ console.log(this.id );
         error: function(data, textStatus, xhr){
           console.log('error');
         },
-         success: function(data, textStatus, xhr) {
+        success: function(data, textStatus, xhr) {
+          
           var length = $('ul#categories li').length,
-          cur_id = 0;        
+          cur_id = 0;
+
+          $(this).remove();      
 
           $('ul#categories li').each(function () { 
             if (cur_id < length-2) {
@@ -65,21 +77,29 @@ console.log(this.id );
             cur_id++;
           });
 
+
+
+
+
+          
+
+
+          
           for (i in data) {          
-            $('#categories').prepend('<li class="list-group-item" >' + '<a href ="' + data[i].link  + '">' + data[i].description + "</a> </li>");          
+            $('#categories').prepend('<li class="list-group-item" >' + '<a href ="' + data[i].link+'" id ="del_cat' + data[i].id+'">' + data[i].description +"</a>" +'<i class="fa fa-pencil"></i>'+'<a id ="' + data[i].id+ '" class="del_link" href ="/deliveries">'+'<i class="fa fa-times"></i>'+"</a>"+"</li>");          
+          
           }  
         }
 
 
 
-
-
-
     });
-   
+
     
   });
 
 
   
 });
+
+

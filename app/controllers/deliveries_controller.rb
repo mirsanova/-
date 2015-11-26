@@ -39,6 +39,7 @@ class DeliveriesController < ApplicationController
   def search
     @categories = Category.search(params[:search])    
     categories = [] 
+
     @categories.each do |cat| 
       categories << { 
         id: cat.id, 
@@ -53,13 +54,26 @@ class DeliveriesController < ApplicationController
   end
 
   def delete_category
-  
+
     category = Category.find(params[:category_id])
     category.destroy
 
+    @categories = Category.all
+
+
+    categories = [] 
+    @categories.each do |cat| 
+      categories << { 
+        id: cat.id, 
+        description: cat.description, 
+        link: edit_category_path(cat) 
+      } 
+      end 
+    
+
     respond_to do |format|
       format.html
-      format.json { render :json => Category.all}
+      format.json { render :json => categories}
     end
    
   end
