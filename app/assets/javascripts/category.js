@@ -35,11 +35,8 @@ $(function() {
 	        });
 
 	        for (i in data) {          
-	          $('#categories').prepend('<li class="list-group-item" >' + '<a href ="' + data[i].link  + '">' + data[i].description + "</a> </li>");
-	          console.log(data[i].link);
-          console.log(data[i].id);
-          console.log(data[i]);
-          console.log(i);          
+	          $('#categories').prepend('<li class="list-group-item" id="li_'+data[i].id+'">' + '<a href ="' + data[i].link+'" id ="del_cat' + data[i].id+'">' + data[i].description +"</a>" +'<i class="fa fa-pencil"></i>'+'<a id ="' + data[i].id+ '" class="del_link" href ="/deliveries">'+'<i class="fa fa-times"></i>'+"</a>"+"</li>");
+	          
 	        }  
 	      }
 		});
@@ -70,14 +67,9 @@ $('#categories').on('click','.del_link', function (e) {
 
               
 
-          $('ul#categories li').each(function () { 
-            if (cur_id < length-2) {
-              $(this).remove(); 
-            }
-            cur_id++;
-          });
+          console.log($("li[id=li_" + id_cat + "]"));
 
-
+          $("li[id=li_" + id_cat + "]").remove();
           
 
           $("div[id=" + id_cat + "]").remove();
@@ -89,10 +81,7 @@ $('#categories').on('click','.del_link', function (e) {
 
 
           
-          for (i in data) {          
-            $('#categories').prepend('<li class="list-group-item" >' + '<a href ="' + data[i].link+'" id ="del_cat' + data[i].id+'">' + data[i].description +"</a>" +'<i class="fa fa-pencil"></i>'+'<a id ="' + data[i].id+ '" class="del_link" href ="/deliveries">'+'<i class="fa fa-times"></i>'+"</a>"+"</li>");          
-          
-          }  
+         
         }
 
 
