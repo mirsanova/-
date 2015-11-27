@@ -44,6 +44,7 @@ $('#categories').on('click','.del_link', function (e) {
 	e.preventDefault();
 	var id_cat = this.id;
 
+
  	$.ajax({
         type: "POST",
         url: "/deliveries/delete_category",
@@ -70,13 +71,48 @@ $('#categories').on('click','.del_link', function (e) {
     });    
   });
 
+$('#categories').on('click','.edit_link', function (e) {
+	e.preventDefault();	 
+	var link_cat = $(this).parent('li').find('a:first');
+	var id = link_cat.attr('id');
+	var val = link_cat.text();
+	var new_html = ('<input value="' + val + '" id="' + id + '">');	
 
+	$(this).css('display','none');
+	$(this).next().css('display','inline-block');
+	link_cat.replaceWith(new_html);	
+	$('ul#categories li input').focus();
+ 
+  });
 
+$('#categories').on('click','.check_link', function (e) {
+	e.preventDefault();		
+	var id_cat = this.id;
+	var id = id_cat.substr(10);
+	
+	$.ajax({
+        type: "POST",
+        url: "/deliveries/update",
+        dataType: "json",
+        data: { category_id: id, description: $('input#del_cat'+id).val()},
+        error: function(data, textStatus, xhr){
+          console.log('error');
+        },
+        success: function(data, textStatus, xhr) {
+        	
+          
+          var new_html = ('<a id="del_cat' + data.id  + '" href="/categories/' + data.id + '/edit">'+ data.description +'</a>');	
 
+			
+          $('input#del_cat'+data.id).replaceWith(new_html);
+                   
+         
+        }
+ 	});
+ 	$(this).css('display','none');
+	$(this).prev().css('display','inline-block');
 
-
-
-  
+  });  
 });
 
 

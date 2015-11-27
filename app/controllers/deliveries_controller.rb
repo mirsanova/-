@@ -36,6 +36,20 @@ class DeliveriesController < ApplicationController
     redirect_to deliveries_path
   end
 
+  def update 
+    
+    @category = Category.find(params[:category_id])
+    @category.update_attributes(:description => params[:description])
+    respond_to do |format|
+        format.html
+        format.json { render :json => { :id => @category.id, :description => @category.description }}
+    end
+    
+    
+  end
+
+
+
   def search
     @categories = Category.search(params[:search])    
    
