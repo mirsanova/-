@@ -1,7 +1,9 @@
 <% @categories.each do |category| %>
   <li class="list-group-item"  id= "li_<%= category.id %>">
     <%= link_to "#{category.description}", edit_category_path(category), id: "del_cat#{category.id}" %>
-    <i class="fa fa-pencil"></i>
+    <%= link_to deliveries_path,  id: "edit_link#{category.id}", class:'edit_link' do %>
+      <i class="fa fa-pencil"></i>
+    <% end %> 
     <%= link_to deliveries_path,  id: "#{category.id}", class:'del_link' do %>
       <i class="fa fa-times"></i>
     <% end %>

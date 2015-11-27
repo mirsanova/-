@@ -1,14 +1,8 @@
-$(function() {  
-
-
-
+$(function() { 
 
   $('#categories_search input').keyup(function (e) {
 
-
-  	if ( e.keyCode > 46 && e.keyCode < 91 || e.keyCode > 95 && e.keyCode < 112 || e.keyCode == 8 || e.keyCode == 32){
-
-      
+  	if ( e.keyCode > 46 && e.keyCode < 91 || e.keyCode > 95 && e.keyCode < 112 || e.keyCode == 8 || e.keyCode == 32){      
 
 	  var count = $(this).val().length,
 	      num = 2;
@@ -46,8 +40,6 @@ $(function() {
     
   });
 
-
-
 $('#categories').on('click','.del_link', function (e) {
 	e.preventDefault();
 	var id_cat = this.id;
@@ -63,33 +55,25 @@ $('#categories').on('click','.del_link', function (e) {
         success: function(data, textStatus, xhr) {
           
           var length = $('ul#categories li').length,
-          cur_id = 0;
+          cur_id = 0;            
 
-              
-
-          console.log($("li[id=li_" + id_cat + "]"));
-
+         
           $("li[id=li_" + id_cat + "]").remove();
           
 
           $("div[id=" + id_cat + "]").remove();
 
-
-
-
-          
-
-
-          
+          $("ul[id=del_list" + id_cat + "]").remove();          
          
         }
 
-
-
-    });
-
-    
+    });    
   });
+
+
+
+
+
 
 
   
