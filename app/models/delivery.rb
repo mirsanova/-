@@ -8,5 +8,6 @@ class Delivery < ActiveRecord::Base
   validates :term_min, presence: true
   validates :term_max, presence: true
 
+scope :status_desc, -> { order('delivery_status DESC') }
 
 end

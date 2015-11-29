@@ -75,7 +75,7 @@
                 <strong>Статус:</strong>                
               </td>
               <td>               
-                <%= @delivery.status %>           
+                <%= @delivery.delivery_status ? 'Доставлено' : 'Не доставлено' %>           
               </td>            
             </tr>
           </tbody>

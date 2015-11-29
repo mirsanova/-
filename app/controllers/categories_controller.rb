@@ -42,6 +42,6 @@ class CategoriesController < ApplicationController
     private
 
     def category_params
-      params.require(:category).permit(:name, :description, :weight, :min_weight)
+      params.require(:category).permit(:name, :description, :max_weight, :min_weight)
     end  
 end	

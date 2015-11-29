@@ -112,7 +112,34 @@ $('#categories').on('click','.check_link', function (e) {
  	$(this).css('display','none');
 	$(this).prev().css('display','inline-block');
 
-  });  
+  }); 
+
+  $('input[type=checkbox]').on('change', function () {
+  var $this = $(this);
+  var id_del = this.id;
+  var id = id_del.substr(7);    
+  var status = false;
+  if ($this.is(':checked')) {
+    status = true;
+  }
+  
+  $.ajax({
+        type: "POST",
+        url: "/deliveries/update_status",
+        dataType: "json",
+        data: { id: id, delivery_status: status},
+        error: function(data, textStatus, xhr){
+          console.log('error');
+        },
+        success: function(data, textStatus, xhr) {
+          
+          
+         
+        }
+  });
+ 
+
+  });   
 });
 
 

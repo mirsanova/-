@@ -11,9 +11,10 @@
           <% @categories.each do |category| %>
             <div id="<%= category.id %>"><strong><%= category.description %></strong></div>            
             <ul class="list-group" id="del_list<%= category.id%>">        
-              <% category.deliveries.each do |delivery| %>
+              <% category.deliveries.status_desc.each do |delivery| %>
                 <li class="list-group-item">
                   <%= link_to "Доставка #{delivery.id}", delivery_path(delivery) %>
+                  <%= check_box_tag "status_#{delivery.id}", params[:delivery_status], delivery.delivery_status  %>
                 </li>            
               <%end%>                  
             </ul>

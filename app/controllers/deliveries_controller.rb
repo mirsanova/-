@@ -47,7 +47,14 @@ class DeliveriesController < ApplicationController
     
     
   end
-
+  def update_status
+    @delivery = Delivery.find(params[:id])
+    @delivery.update_attributes(:delivery_status => params[:delivery_status])
+     respond_to do |format|
+        format.html
+        format.json { render :json => { :id => @delivery.id, :delivery_status => @delivery.delivery_status }}
+    end
+  end
 
 
   def search
@@ -111,8 +118,8 @@ class DeliveriesController < ApplicationController
     else
       category = Category.find(params[:category_id])
 
-      if params[:weight].to_f > category.weight || params[:weight].to_f < category.min_weight
-        err_msg = "Для категории #{category.description} вес не должен превышать #{category.weight} кг и не должен быть менее #{category.min_weight} кг."
+      if params[:weight].to_f > category.max_weight || params[:weight].to_f < category.min_weight
+        err_msg = "Для категории #{category.description} вес не должен превышать #{category.max_weight} кг и не должен быть менее #{category.min_weight} кг."
       else   
       res = Emspost::Request.calculate(params[:from_location], params[:to_location], params[:weight])
 
@@ -137,6 +144,6 @@ class DeliveriesController < ApplicationController
 
   private
     def delivery_params
-      params.require(:delivery).permit(:from_location, :to_location, :weight, :price, :term_min, :term_max, :category_id)
+      params.require(:delivery).permit(:from_location, :to_location, :weight, :price, :term_min, :term_max, :category_id, :status)
     end
 end
