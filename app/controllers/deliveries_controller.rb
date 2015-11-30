@@ -54,7 +54,7 @@ class DeliveriesController < ApplicationController
     
      respond_to do |format|
         format.html
-        format.json { render :json => category.deliveries }
+        format.json { render :json => category.deliveries.status_desc }
     end
   end
 

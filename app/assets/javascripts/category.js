@@ -114,7 +114,7 @@ $('#categories').on('click','.check_link', function (e) {
 
   }); 
 
-  $('input[type=checkbox]').on('change', function () {
+ $(document).on("change", ":checkbox", function(){
 
     var $this = $(this);
     var id_del = this.id;
@@ -160,10 +160,10 @@ $('#categories').on('click','.check_link', function (e) {
 
           if ( data[i].delivery_status == true )
           {
-            $('#collapseOne div ul[id="del_list'+ data[i].category_id +'"]').prepend('<li class="list-group-item list-group-item-warning" id="'+ data[i].id +'">' +'<a href ="/deliveries/' + data[i].id +'">Доставка ' + data[i].id +'</a>' + '<input type="checkbox" name="status_'+data[i].id+'" id="status_'+data[i].id+'" checked="checked">');
+            $('#collapseOne div ul[id="del_list'+ data[i].category_id +'"]').append('<li class="list-group-item list-group-item-warning" id="'+ data[i].id +'">' +'<a href ="/deliveries/' + data[i].id +'">Доставка ' + data[i].id +'</a>' + '<input type="checkbox" name="status_'+data[i].id+'" id="status_'+data[i].id+'" checked="checked">');
           }
           else{
-            $('#collapseOne div ul[id="del_list'+ data[i].category_id +'"]').prepend('<li class="list-group-item list-group-item-danger" id="'+ data[i].id +'">' +'<a href ="/deliveries/' + data[i].id +'">Доставка ' + data[i].id +'</a>' + '<input type="checkbox" name="status_'+data[i].id+'" id="status_'+data[i].id+'" >');
+            $('#collapseOne div ul[id="del_list'+ data[i].category_id +'"]').append('<li class="list-group-item list-group-item-danger" id="'+ data[i].id +'">' +'<a href ="/deliveries/' + data[i].id +'">Доставка ' + data[i].id +'</a>' + '<input type="checkbox" name="status_'+data[i].id+'" id="status_'+data[i].id+'" >');
             
           };         
             
