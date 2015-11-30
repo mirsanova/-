@@ -141,27 +141,31 @@ $('#categories').on('click','.check_link', function (e) {
       success: function(data, textStatus, xhr) {
         var length = $('#collapseOne div ul li').length;
         var cur_id = 0;
-        console.log(length);
-        console.log($('#collapseOne div ul[id='+id_parent+'] li'));
+         
+       
+        $('#collapseOne div ul li[id='+id+']').remove();
+
+
+
         $('#collapseOne div ul[id='+id_parent+'] li').each(function () { 
             if (cur_id < length) {
-              $(this).remove(); 
+              $(this).remove();
             }
             cur_id++;
         });
 
         for (i in data) {
-          //lalalala
-            console.log(data[i].id);
           
-          // if ( status == true )
-          // {
-          //   $('#collapseOne div ul[id='+id_parent+']').prepend('<li class="list-group-item list-group-item-warning" id="'+data[i].id+'">' +'<a href ="/deliveries/' + data[i].id +'">Доставка ' + data[i].id +'</a>' + '<input type="checkbox" name="status_'+data[i].id+'" id="status_'+data[i].id+'" checked="checked">');
-          // }
-          // else{
-          //   $('#collapseOne div ul[id='+id_parent+']').prepend('<li class="list-group-item list-group-item-danger" id="'+data[i].id+'">' +'<a href ="/deliveries/' + data[i].id +'">Доставка ' + data[i].id +'</a>' + '<input type="checkbox" name="status_'+data[i].id+'" id="status_'+data[i].id+'" >');
+          console.log(data);
+
+          if ( data[i].delivery_status == true )
+          {
+            $('#collapseOne div ul[id="del_list'+ data[i].category_id +'"]').prepend('<li class="list-group-item list-group-item-warning" id="'+ data[i].id +'">' +'<a href ="/deliveries/' + data[i].id +'">Доставка ' + data[i].id +'</a>' + '<input type="checkbox" name="status_'+data[i].id+'" id="status_'+data[i].id+'" checked="checked">');
+          }
+          else{
+            $('#collapseOne div ul[id="del_list'+ data[i].category_id +'"]').prepend('<li class="list-group-item list-group-item-danger" id="'+ data[i].id +'">' +'<a href ="/deliveries/' + data[i].id +'">Доставка ' + data[i].id +'</a>' + '<input type="checkbox" name="status_'+data[i].id+'" id="status_'+data[i].id+'" >');
             
-          // };         
+          };         
             
         }
       }
