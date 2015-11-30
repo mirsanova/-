@@ -114,7 +114,7 @@ $('#categories').on('click','.check_link', function (e) {
 
   }); 
 
- $(document).on("change", ":checkbox", function(){
+ $('#collapseOne').on("change", ":checkbox", function(){
 
     var $this = $(this);
     var id_del = this.id;
@@ -141,32 +141,23 @@ $('#categories').on('click','.check_link', function (e) {
       success: function(data, textStatus, xhr) {
         var length = $('#collapseOne div ul li').length;
         var cur_id = 0;
-         
-       
-        $('#collapseOne div ul li[id='+id+']').remove();
-
-
 
         $('#collapseOne div ul[id='+id_parent+'] li').each(function () { 
-            if (cur_id < length) {
-              $(this).remove();
-            }
-            cur_id++;
+          if (cur_id < length) {
+            $(this).remove();
+          }
+          cur_id++;
         });
 
-        for (i in data) {
-          
-          console.log(data);
+        for (i in data) {   
 
           if ( data[i].delivery_status == true )
           {
             $('#collapseOne div ul[id="del_list'+ data[i].category_id +'"]').append('<li class="list-group-item list-group-item-warning" id="'+ data[i].id +'">' +'<a href ="/deliveries/' + data[i].id +'">Доставка ' + data[i].id +'</a>' + '<input type="checkbox" name="status_'+data[i].id+'" id="status_'+data[i].id+'" checked="checked">');
           }
           else{
-            $('#collapseOne div ul[id="del_list'+ data[i].category_id +'"]').append('<li class="list-group-item list-group-item-danger" id="'+ data[i].id +'">' +'<a href ="/deliveries/' + data[i].id +'">Доставка ' + data[i].id +'</a>' + '<input type="checkbox" name="status_'+data[i].id+'" id="status_'+data[i].id+'" >');
-            
-          };         
-            
+            $('#collapseOne div ul[id="del_list'+ data[i].category_id +'"]').append('<li class="list-group-item list-group-item-danger" id="'+ data[i].id +'">' +'<a href ="/deliveries/' + data[i].id +'">Доставка ' + data[i].id +'</a>' + '<input type="checkbox" name="status_'+data[i].id+'" id="status_'+data[i].id+'" >');       
+          };            
         }
       }
     });
