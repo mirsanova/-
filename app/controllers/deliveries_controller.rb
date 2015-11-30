@@ -50,9 +50,10 @@ class DeliveriesController < ApplicationController
   def update_status
     @delivery = Delivery.find(params[:id])
     @delivery.update_attributes(:delivery_status => params[:delivery_status])
+    category = Category.find(params[:category_id])
      respond_to do |format|
         format.html
-        format.json { render :json => { :id => @delivery.id, :delivery_status => @delivery.delivery_status }}
+        format.json { render :json => category.deliveries }
     end
   end
 
@@ -64,7 +65,7 @@ class DeliveriesController < ApplicationController
    
     respond_to do |format|
         format.html
-        format.json { render :json => categories}
+        format.json { render :json => categories }
     end
   end
 

@@ -134,7 +134,7 @@ $('#categories').on('click','.check_link', function (e) {
       type: "POST",
       url: "/deliveries/update_status",
       dataType: "json",
-      data: { id: id, delivery_status: status},
+      data: { id: id, delivery_status: status, category_id: id_parent.substr(8)},
       error: function(data, textStatus, xhr){
         console.log('error');
       },
@@ -151,10 +151,8 @@ $('#categories').on('click','.check_link', function (e) {
         });
 
         for (i in data) {
-          console.log(status == true);
-          console.log(id_parent);
-
-          console.log(id);
+          //lalalala
+            console.log(data[i].id);
           
           // if ( status == true )
           // {
