@@ -115,30 +115,59 @@ $('#categories').on('click','.check_link', function (e) {
   }); 
 
   $('input[type=checkbox]').on('change', function () {
-  var $this = $(this);
-  var id_del = this.id;
-  var id = id_del.substr(7);    
-  var status = false;
-  if ($this.is(':checked')) {
-    status = true;
-  }
-  
-  $.ajax({
-        type: "POST",
-        url: "/deliveries/update_status",
-        dataType: "json",
-        data: { id: id, delivery_status: status},
-        error: function(data, textStatus, xhr){
-          console.log('error');
-        },
-        success: function(data, textStatus, xhr) {
-          
-          
-         
-        }
-  });
- 
 
+    var $this = $(this);
+    var id_del = this.id;
+    var id = id_del.substr(7);    
+    var status = false;
+    var id_parent = $(this).parents().get(1).id;
+
+    if ($this.is(':checked')) {
+      status = true;
+      $("li[id=" + id + "]").removeClass('list-group-item-danger').addClass('list-group-item-warning');
+    }
+    else{
+      $("li[id=" + id + "]").removeClass('list-group-item-warning').addClass('list-group-item-danger');
+    };
+    
+    $.ajax({
+      type: "POST",
+      url: "/deliveries/update_status",
+      dataType: "json",
+      data: { id: id, delivery_status: status},
+      error: function(data, textStatus, xhr){
+        console.log('error');
+      },
+      success: function(data, textStatus, xhr) {
+        var length = $('#collapseOne div ul li').length;
+        var cur_id = 0;
+        console.log(length);
+        console.log($('#collapseOne div ul[id='+id_parent+'] li'));
+        $('#collapseOne div ul[id='+id_parent+'] li').each(function () { 
+            if (cur_id < length) {
+              $(this).remove(); 
+            }
+            cur_id++;
+        });
+
+        for (i in data) {
+          console.log(status == true);
+          console.log(id_parent);
+
+          console.log(id);
+          
+          // if ( status == true )
+          // {
+          //   $('#collapseOne div ul[id='+id_parent+']').prepend('<li class="list-group-item list-group-item-warning" id="'+data[i].id+'">' +'<a href ="/deliveries/' + data[i].id +'">Доставка ' + data[i].id +'</a>' + '<input type="checkbox" name="status_'+data[i].id+'" id="status_'+data[i].id+'" checked="checked">');
+          // }
+          // else{
+          //   $('#collapseOne div ul[id='+id_parent+']').prepend('<li class="list-group-item list-group-item-danger" id="'+data[i].id+'">' +'<a href ="/deliveries/' + data[i].id +'">Доставка ' + data[i].id +'</a>' + '<input type="checkbox" name="status_'+data[i].id+'" id="status_'+data[i].id+'" >');
+            
+          // };         
+            
+        }
+      }
+    });
   });   
 });
 
