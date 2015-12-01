@@ -93,7 +93,7 @@ class DeliveriesController < ApplicationController
     @categories.each do |cat| 
       categories << { 
         id: cat.id, 
-        description: cat.description, 
+        description: cat.filtered_description, 
         link: edit_category_path(cat) 
       } 
       end 

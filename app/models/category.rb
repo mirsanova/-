@@ -10,5 +10,16 @@ class Category < ActiveRecord::Base
     else
       order("description DESC")  
     end
-  end  
+  end 
+
+  def filtered_description
+    descriptions.include?(description) ? '***' : description
+  end 
+
+  protected
+
+  def descriptions
+    descriptions ||= Filter::Words.load()
+  end
+
 end

@@ -1,6 +1,6 @@
 <% @categories.each do |category| %>
   <li class="list-group-item"  id= "li_<%= category.id %>">
-    <%= link_to "#{category.description}", edit_category_path(category), id: "del_cat#{category.id}" %>
+    <%= link_to "#{category.filtered_description}", edit_category_path(category), id: "del_cat#{category.id}" %>
     <%= link_to edit_category_path(category),  id: "edit_link#{category.id}", class:'edit_link' do %>
       <i class="fa fa-pencil"></i>
     <% end %>
