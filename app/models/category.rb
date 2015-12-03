@@ -15,20 +15,19 @@ class Category < ActiveRecord::Base
   def filtered_description
     # descriptions.include?(description) ? '***' : description
     if descriptions.any? { |d| desc = description.mb_chars.downcase!; d = d.mb_chars.downcase!.to_s; desc[d]}
+      desc = description.mb_chars.downcase
       descriptions.each do |d|
+        d = d.mb_chars.downcase
 
-        d = d.mb_chars.downcase!
-        
         count = d.length
         string = '*' * count
 
-
-        desc = description.mb_chars.downcase!
-              
-        desc.gsub!(/#{d}/, string)       
-      end      
+        desc.gsub!(/#{d}/, string)      
+      end  
+      desc    
+    else
+      description
     end
-    description
   end 
 
   protected
