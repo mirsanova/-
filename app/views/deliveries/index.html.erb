@@ -9,7 +9,7 @@
       <div id="collapseOne" class="panel-collapse collapse in">
         <div class="panel-body">
           <% @categories.each do |category| %>
-            <div id="<%= category.id %>"><strong><%= category.filtered_description %></strong></div>            
+            <div id="<%= category.id %>"><strong><%= category.description %></strong></div>            
             <ul class="list-group" id="del_list<%= category.id%>">        
               <% category.deliveries.status_desc.each do |delivery| %>
                 <li class="list-group-item <%= delivery.delivery_status ? 'list-group-item-warning' : 'list-group-item-danger'%>" id="<%=delivery.id%>">

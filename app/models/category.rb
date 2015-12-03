@@ -1,4 +1,5 @@
 class Category < ActiveRecord::Base
+  before_save :set_filtered_description
 
   has_many :deliveries, dependent: :destroy
 
@@ -28,7 +29,13 @@ class Category < ActiveRecord::Base
     else
       description
     end
-  end 
+  end
+
+  def set_filtered_description
+
+      self.description = filtered_description
+      
+    end 
 
   protected
 
