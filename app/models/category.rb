@@ -13,7 +13,15 @@ class Category < ActiveRecord::Base
   end 
 
   def filtered_description
-    descriptions.include?(description) ? '***' : description
+    if descriptions.any? { |d| description[d] }
+      descriptions.each do |d|
+        description.gsub!(/#{d}/i, '***')
+      end
+      description
+    else
+      description
+    end
+    # descriptions.include?(description) ? '***' : description
   end 
 
   protected
