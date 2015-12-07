@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
   		flash[:succes] = "Welcome to rails simple auth"
 
   		redirect_to root_path
+      
   	else
   		flash.now[:danger] = "Your email or password does not match"
   		render 'new'
