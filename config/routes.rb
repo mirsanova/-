@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
+  get 'sessions/new'
+
+  get 'pages/index'
+
+  get 'profile', to: 'pages#show'
+
+  get 'login', to: 'sessions#new'
+  delete 'logout', to: 'sessions#destroy'
+  post 'login', to: 'sessions#create'
+
   resources :articles do
     resources :comments
   end
@@ -16,7 +25,8 @@ Rails.application.routes.draw do
   post '/deliveries/calculate_ems' => 'deliveries#calculate_ems', :as => "deliveries/calculate_ems"
   post '/deliveries/update' => 'deliveries#update', :as => "deliveries/update"
   
-  root 'welcome#index'
+  root 'pages#index'
+  # root 'welcome#index'
 
   # post "/api", to: "api#calculate_ems"
 
