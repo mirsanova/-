@@ -1,0 +1,18 @@
+<div class="row">
+	<div class="col-md-6 col md-offset-3">
+		<h1>Profile</h1>
+
+		<% user = current_user %>
+
+		<table class="table">
+			<tr>
+				<th>Имя</th>
+				<td><%= user.name %></td>
+			</tr>
+			<tr>
+				<th>Электронная почта</th>
+				<td><%= user.email %></td>
+			</tr>	
+		</table>		
+	</div>
+</div>

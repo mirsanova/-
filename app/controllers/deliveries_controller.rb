@@ -1,4 +1,6 @@
 class DeliveriesController < ApplicationController
+  before_action :must_login, only: [:show, :new, :create, :update]
+
   include ApplicationHelper
   require 'open-uri'
     before_action :locations_all

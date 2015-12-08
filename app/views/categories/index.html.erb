@@ -10,9 +10,11 @@
           <th>Категория</th>
           <th>Описание</th>
           <th>Макс.вес</th>
-           <th>Мин.вес</th>                
-          <th class='text-center'></th>
-          <th class='text-center'></th>          
+          <th>Мин.вес</th>
+          <% if signed_in? %>
+            <th class='text-center'></th>
+            <th class='text-center'></th>
+          <% end %>          
         </tr>
       </thead>
       <tbody>  
@@ -30,18 +32,20 @@
             <td>
               <p> <%= category.min_weight%> </p>
             </td>
-            <td class="text-center">
-              <%= link_to edit_category_path(category) do %>
-                <span class="fa fa-pencil-square-o"></span>
-              <% end %>
-            </td>
-            <td class="text-center">
-              <%= link_to category_path(category),
-                method: :delete,
-                data: { confirm: 'Are you sure?' } do %>
-              <span class="fa fa-times"></span>
-              <% end %>
-            </td>            
+            <% if signed_in? %>
+              <td class="text-center">
+                <%= link_to edit_category_path(category) do %>
+                  <span class="fa fa-pencil-square-o"></span>
+                <% end %>
+              </td>
+              <td class="text-center">
+                <%= link_to category_path(category),
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' } do %>
+                <span class="fa fa-times"></span>
+                <% end %>
+              </td>
+            <% end %>            
           </tr>
           <% end %>
       </tbody>

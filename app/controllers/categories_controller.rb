@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-      
+  before_action :must_login, only: [:new, :create, :update, :destroy]    
       
 	def index
     	@categories = Category.all
@@ -22,9 +22,7 @@ class CategoriesController < ApplicationController
     	else
       		render 'new'
     	end
-    end
-
-    
+    end 
 
     def update
     	@category = Category.find(params[:id])

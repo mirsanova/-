@@ -1,20 +1,15 @@
 Rails.application.routes.draw do
+  resources :users
+  resources :sessions, only: [:new, :create, :destroy]
+
   get 'sessions/new'
-
   get 'pages/index'
-
-  get 'profile', to: 'pages#show'
-
+  get 'profile', to: 'users#show'
   get 'login', to: 'sessions#new'
-
-
   delete 'logout', to: 'sessions#destroy'
   post 'login', to: 'sessions#create'
-
-
-
   get 'signup', to: 'users#new'
-  resources :users
+  
 
   resources :articles do
     resources :comments
@@ -32,7 +27,8 @@ Rails.application.routes.draw do
   post '/deliveries/calculate_ems' => 'deliveries#calculate_ems', :as => "deliveries/calculate_ems"
   post '/deliveries/update' => 'deliveries#update', :as => "deliveries/update"
   
-  root 'pages#index'
+  root 'deliveries#index'
+  
   # root 'welcome#index'
 
   # post "/api", to: "api#calculate_ems"
