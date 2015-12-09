@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
   before_action :must_login, only: [:show]
+  before_filter :save_login_state, only: [:new, :create]
 
-  def show  
-    # @user = User.find(params[:id])
+  def show
+
   end
 
   def new
@@ -13,9 +14,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      sign_in @user
+      session[:user_id] = @user.id
       flash[:success] = "Вы успешно зарегистрированы на нашем сайте"
-        redirect_to root_path
+
+      redirect_to root_path
     else
       render 'new'
     end      

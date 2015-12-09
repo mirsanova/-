@@ -1,9 +1,13 @@
 class CategoriesController < ApplicationController
   before_action :must_login, only: [:new, :create, :update, :destroy]    
       
-	def index
+	  def index
     	@categories = Category.all
   	end
+
+    def show
+      @category = Category.find(params[:id])
+    end
 
   	def new
     	@category = Category.new

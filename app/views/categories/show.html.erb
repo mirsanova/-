@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="background-style">
+    <div class="row">
+      <div class="text-center">
+        <h1 class="text-info">Категория</h1>
+      </div>
+    </div>   
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <table class="table table-hover">
+          <tbody>
+            <tr>
+              <td>            
+                <strong>Категория:</strong>              
+              </td>
+              <td>              
+                <%= @category.name %>           
+              </td>            
+            </tr>
+            <tr>
+              <td>               
+                <strong>Описание:</strong>              
+              </td>
+              <td>              
+                <%= @category.description %>             
+              </td>            
+            </tr>
+             <tr>
+              <td>               
+                <strong>Макс. вес:</strong>               
+              </td>
+              <td>              
+                <%= @category.max_weight %>               
+              </td>            
+            </tr>
+            <tr>
+              <td>              
+                <strong>Мин. вес:</strong>               
+              </td>
+              <td>               
+                <%= @category.min_weight %>               
+              </td>            
+            </tr>
+            <tr>
+          </tbody>
+        </table>   
+        <div class="text-center">
+          <nav>
+            <div class="btn-group">
+              <%= link_to 'Главная', root_path, class: 'btn btn-primary', role: 'button', method: :get %>    
+            </div>
+          </nav>
+        </div> 
+      </div>
+    </div>          
+  </div>   
+</div>
