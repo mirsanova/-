@@ -2,7 +2,6 @@ class SessionsController < ApplicationController
   before_filter :save_login_state, only: [:new, :create]
 
   def create  
-    puts "2222"
     @user = User.find_by_email(params[:email])
 
     if @user && @user.authenticate(params[:password])
