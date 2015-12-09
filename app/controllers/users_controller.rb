@@ -15,6 +15,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
+      @current_user = @user
       flash[:success] = "Вы успешно зарегистрированы на нашем сайте"
 
       redirect_to root_path
