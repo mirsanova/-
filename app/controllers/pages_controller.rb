@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-	before_action :must_login, only: [:show]
+  before_action :must_login, only: [:show]
   def index
   end
 
